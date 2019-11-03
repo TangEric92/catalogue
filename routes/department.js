@@ -39,7 +39,7 @@ router.get("/department", async (req, res) => {
 
 //update
 router.put("/department/update", async (req, res) => {
-  const id = req.body.id;
+  const id = req.query.id;
   const title = req.body.title;
   try {
     if (id && title) {
@@ -53,7 +53,7 @@ router.put("/department/update", async (req, res) => {
         return res.json("Cet id n'existe pas");
       }
     }
-    res.json("bas request");
+    res.json("bad request");
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
