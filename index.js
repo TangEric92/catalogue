@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
 
-mongoose.connect("mongodb://localhost/catalogue", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/catalogue", {
+  useNewUrlParser: true
+});
 
 const department = require("./routes/department");
 const category = require("./routes/category");
@@ -17,6 +19,6 @@ app.use(product);
 app.use(review);
 //const review = require("./routes");
 //app.use(review);
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server Launched");
 });
